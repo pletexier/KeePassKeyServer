@@ -14,6 +14,7 @@ using System.Windows.Forms;
 //using System.Management;
 using Security;
 
+using KeePass.App;
 using KeePass.Plugins;
 using KeePassLib.Keys;
 
@@ -168,8 +169,23 @@ namespace KeyOnline
 				StatusForm.Close();
 				return null;
 			}
-
+			
+			ApplyPolicy();
+			
 			return Encoding.ASCII.GetBytes(dbKey);
+		}
+		
+		private void ApplyPolicy()
+		{
+			KeePass.App.AppPolicy.Current.ChangeMasterKey = false;
+			KeePass.App.AppPolicy.Current.ChangeMasterKeyNoKey = false;
+			KeePass.App.AppPolicy.Current.Export = false;
+			KeePass.App.AppPolicy.Current.ExportNoKey = false;
+			KeePass.App.AppPolicy.Current.Print = false;
+			KeePass.App.AppPolicy.Current.PrintNoKey = false;
+			KeePass.App.AppPolicy.Current.UnhidePasswords = false;
+			KeePass.App.AppPolicy.Current.EditTriggers = false;
+			KeePass.App.AppPolicy.Current.CopyWholeEntries = false;
 		}
 	}
 }
