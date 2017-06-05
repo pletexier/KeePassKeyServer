@@ -27,29 +27,29 @@ namespace KeyServer
 		/// <param name="userName">The User Name to login in as</param>
 		/// <param name="password">User's password</param>
 		/// <returns>True on successful login.</returns>
-		[WebMethod(EnableSession=true)]
-		public bool Login(string userName, string password)
-		{
-			//NOTE: There are better ways of doing authentication. This is just illustrates Session usage.
-			UserName = userName;
-			return true;
-		}
+//		[WebMethod(EnableSession=true)]
+//		public bool Login(string userName, string password)
+//		{
+//			//NOTE: There are better ways of doing authentication. This is just illustrates Session usage.
+//			UserName = userName;
+//			return true;
+//		}
 		
 		/// <summary>
 		/// Logs out of the Session.
 		/// </summary>
-		[WebMethod(EnableSession=true)]
-		public void Logout()
-		{    
-			Context.Session.Abandon();
-		}
+//		[WebMethod(EnableSession=true)]
+//		public void Logout()
+//		{    
+//			Context.Session.Abandon();
+//		}
 
 		/// <summary>
 		/// Main Method
 		/// Check permissions and return key.
 		/// </summary>
 		[WebMethod(EnableSession=true)]
-		public string GetKey(string db, string username, string hardwareid)
+		public string GetKey(string db, string hardwareid)
 		{
 	   	  // Log request
 	   	  DataTable RequestLog = CreateLogTable();
@@ -67,7 +67,7 @@ namespace KeyServer
 	   	  RequestLogStream.Close();
 
 		  // Check permission in permission.xml
-		  if (CheckPermission(db,username,hardwareid))
+		  if (CheckPermission(db,UserName,hardwareid))
 		  {
 		  	return GetDbKey(db); 
 		  }
@@ -81,8 +81,9 @@ namespace KeyServer
 		/// UserName of the logged in user.
 		/// </summary>
 		private string UserName {
-			get {return (string)Context.Session["User"];}
-			set {Context.Session["User"] = value;}
+			get {return (string)User.Identity.Name;}
+			//get {return (string)Context.Session["User"];}
+			//set {Context.Session["User"] = value;}
 		}
 		
 		/// <summary>

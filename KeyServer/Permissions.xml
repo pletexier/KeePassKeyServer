@@ -18,7 +18,7 @@
   </xs:schema>
   <Permissions>
     <db>NewDatabase.kdbx</db>
-    <user>User1</user>
+    <user>VM-Win7\Patrice</user>
     <hardwareid>94E4-DD7F-BFB0-502C-10DD-8453-B122-7D34</hardwareid>
   </Permissions>
   <Permissions>

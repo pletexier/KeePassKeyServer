@@ -18,6 +18,7 @@
   </xs:schema>
   <RequestLog>
     <db>NewDatabase.kdbx</db>
+    <user>vm-win7\patrice</user>
     <hardwareid>94E4-DD7F-BFB0-502C-10DD-8453-B122-7D34</hardwareid>
   </RequestLog>
 </NewDataSet>
