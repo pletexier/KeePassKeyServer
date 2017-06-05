@@ -1,0 +1,29 @@
+<NewDataSet>
+  <xs:schema id="NewDataSet" xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xs:element name="NewDataSet" msdata:IsDataSet="true" msdata:MainDataTable="Permissions" msdata:UseCurrentLocale="true">
+      <xs:complexType>
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+          <xs:element name="Permissions">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="db" type="xs:string" minOccurs="0" />
+                <xs:element name="user" type="xs:string" minOccurs="0" />
+                <xs:element name="hardwareid" type="xs:string" minOccurs="0" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:choice>
+      </xs:complexType>
+    </xs:element>
+  </xs:schema>
+  <Permissions>
+    <db>NewDatabase.kdbx</db>
+    <user>User1</user>
+    <hardwareid>94E4-DD7F-BFB0-502C-10DD-8453-B122-7D34</hardwareid>
+  </Permissions>
+  <Permissions>
+    <db>NewDatabase.kdbx</db>
+    <user>User2</user>
+    <hardwareid>94E4-DD7F-BFB0-502C-10DD-8453-B122-7D34</hardwareid>
+  </Permissions>
+</NewDataSet>

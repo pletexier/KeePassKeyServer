@@ -1,0 +1,24 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+# SharpDevelop 5.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KeyOnline", "KeyOnline.csproj", "{AB7F26CB-B578-4521-86ED-43875F238870}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KeyOnlineWS", "..\KeyOnlineWS\KeyOnlineWS.csproj", "{05209D0D-79DC-4F13-8E3D-C64946AFCE46}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AB7F26CB-B578-4521-86ED-43875F238870}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AB7F26CB-B578-4521-86ED-43875F238870}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AB7F26CB-B578-4521-86ED-43875F238870}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AB7F26CB-B578-4521-86ED-43875F238870}.Release|Any CPU.Build.0 = Release|Any CPU
+		{05209D0D-79DC-4F13-8E3D-C64946AFCE46}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{05209D0D-79DC-4F13-8E3D-C64946AFCE46}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{05209D0D-79DC-4F13-8E3D-C64946AFCE46}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{05209D0D-79DC-4F13-8E3D-C64946AFCE46}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
