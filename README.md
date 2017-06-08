@@ -1,4 +1,4 @@
-# Keepass-KeyServer
+# KeePassKeyServer
 
 Keepass-KeyServer is a key provider plugin for KeePass.
 
