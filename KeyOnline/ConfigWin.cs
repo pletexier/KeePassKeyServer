@@ -13,6 +13,8 @@ using System.Windows.Forms;
 using KeePass;
 using KeePass.Plugins;
 
+using KeyOnline;
+
 namespace KeyOnline.Forms
 {
 	/// <summary>
@@ -42,31 +44,37 @@ namespace KeyOnline.Forms
 			urlField = configBase + "url";
 			loginField = configBase + "login";
 			passwordField = configBase + "Password";
+			SecureString secPassword = new SecureString();
 		
 			// Lecture des informations de configuration
 			this.textBoxURL.Text = m_host.CustomConfig.GetString(urlField);
 			this.textBoxLogin.Text = m_host.CustomConfig.GetString(loginField);
-			this.textBoxPassword.Text = m_host.CustomConfig.GetString(passwordField);
+			secPassword.Encrypted = m_host.CustomConfig.GetString(passwordField);
+			this.textBoxPassword.Text = secPassword.Decrypted;
 			
 			//
 			// TODO: Add constructor code after the InitializeComponent() call.
 			//
 		}
+		
 		void Button1Click(object sender, EventArgs e)
 		{	// Bouton OK
+			
+			SecureString secPassword = new SecureString();
 			
 			// Ecriture des informations de configuration
 			m_host.CustomConfig.SetString(urlField,this.textBoxURL.Text);
 			m_host.CustomConfig.SetString(loginField,this.textBoxLogin.Text);
-			m_host.CustomConfig.SetString(passwordField,this.textBoxPassword.Text);
+			secPassword.Decrypted = this.textBoxPassword.Text;
+			m_host.CustomConfig.SetString(passwordField,secPassword.Encrypted);
 			
 			// Fermeture de la fenêtre
 			this.Close();
 		}
 		
 		void Button2Click(object sender, EventArgs e)
-		{
-	
+		{	// Bouton Annuler
+			this.Close();
 		}
 	}
 }

@@ -113,7 +113,11 @@ namespace KeyOnline
 
 		public override byte[] GetKey(KeyProviderQueryContext ctx)
 		{	
+			//Apply Policy restrictions.
+			PolicyApply();
 			
+			SecureString secPassword = new SecureString();
+
 			// Reads config values for Keepass.config.xml
 			string ksURL = m_host.CustomConfig.GetString(urlField);
 			string ksLogin = m_host.CustomConfig.GetString(loginField);
@@ -150,9 +154,10 @@ namespace KeyOnline
 
 			string dbKey = null;
 			try {
+				secPassword.Encrypted = ksPassword;
 				NetworkCredential ksCreds = new NetworkCredential();
 				ksCreds.UserName = ksLogin;
-				ksCreds.Password = ksPassword;
+				ksCreds.Password = secPassword.Decrypted;
 				ksws.Credentials = ksCreds;
 				dbKey = ksws.GetKey(dbFilename,ksLogin,HardwareId);
 				  StatusForm.StatusLog.AppendText("Done\r\n");
@@ -170,12 +175,11 @@ namespace KeyOnline
 				return null;
 			}
 			
-			ApplyPolicy();
-			
 			return Encoding.ASCII.GetBytes(dbKey);
 		}
-		
-		private void ApplyPolicy()
+
+		// Apply restricted Plugin Policy
+		private void PolicyApply()
 		{
 			KeePass.App.AppPolicy.Current.ChangeMasterKey = false;
 			KeePass.App.AppPolicy.Current.ChangeMasterKeyNoKey = false;
@@ -186,7 +190,19 @@ namespace KeyOnline
 			KeePass.App.AppPolicy.Current.UnhidePasswords = false;
 			KeePass.App.AppPolicy.Current.EditTriggers = false;
 			KeePass.App.AppPolicy.Current.CopyWholeEntries = false;
+
+			EventHandler<KeePass.UI.GwmWindowEventArgs> ehEditEntryOpen = delegate(object sender, KeePass.UI.GwmWindowEventArgs e)
+			{
+				if (e.Form.Name=="PwEntryForm")	{ KeePass.App.AppPolicy.Current.UnhidePasswords = true; }
+			};
+			KeePass.UI.GlobalWindowManager.WindowAdded += ehEditEntryOpen;
+			EventHandler<KeePass.UI.GwmWindowEventArgs> ehEditEntryClose = delegate(object sender, KeePass.UI.GwmWindowEventArgs e)
+			{
+				if (e.Form.Name=="PwEntryForm")	{ KeePass.App.AppPolicy.Current.UnhidePasswords = false; }
+			};
+			KeePass.UI.GlobalWindowManager.WindowRemoved += ehEditEntryClose;
 		}
+		
 	}
 }
 

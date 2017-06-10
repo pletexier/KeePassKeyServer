@@ -47,6 +47,7 @@
     <Reference Include="System.Windows.Forms" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Toolbox.cs" />
     <Compile Include="ConfigWin.cs" />
     <Compile Include="ConfigWin.Designer.cs">
       <DependentUpon>ConfigWin.cs</DependentUpon>
